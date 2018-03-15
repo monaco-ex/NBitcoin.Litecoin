@@ -111,133 +111,127 @@ namespace NBitcoin.Monacoin
 
 		private static object RegisterLazy()
 		{
-			var port = 9333;
+			var port = 9401;
 			NetworkBuilder builder = new NetworkBuilder();
 			_Mainnet = builder.SetConsensus(new Consensus()
 			{
-				SubsidyHalvingInterval = 840000,
-				MajorityEnforceBlockUpgrade = 750,
-				MajorityRejectBlockOutdated = 950,
-				MajorityWindow = 1000,
-				BIP34Hash = new uint256("fa09d204a83a768ed5a7c8d441fa62f2043abf420cff1226c7b4329aeb9d51cf"),
+				SubsidyHalvingInterval = 1051200,
+				MajorityEnforceBlockUpgrade = 750,//TODO
+				MajorityRejectBlockOutdated = 950,//TODO
+				MajorityWindow = 10080,
+				BIP34Hash = new uint256("ff9f1c0116d19de7c9963845e129f9ed1bfc0b376eb54fd7afa42e0d418c8bb6"),
 				PowLimit = new Target(new uint256("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff")),
-				PowTargetTimespan = TimeSpan.FromSeconds(3.5 * 24 * 60 * 60),
-				PowTargetSpacing = TimeSpan.FromSeconds(2.5 * 60),
+				PowTargetTimespan = TimeSpan.FromSeconds(1.0 * 24 * 60 * 60),
+				PowTargetSpacing = TimeSpan.FromSeconds(1.5 * 60),
 				PowAllowMinDifficultyBlocks = false,
 				PowNoRetargeting = false,
-				RuleChangeActivationThreshold = 6048,
-				MinerConfirmationWindow = 8064,
+				RuleChangeActivationThreshold = 7560,
+				MinerConfirmationWindow = 10080,
 				CoinbaseMaturity = 100,
-				HashGenesisBlock = new uint256("12a765e31ffd4059bada1e25190f6e98c99d9714d334efa41a195a7e7e04bfe2"),
+				HashGenesisBlock = new uint256("ff9f1c0116d19de7c9963845e129f9ed1bfc0b376eb54fd7afa42e0d418c8bb6"),
 				GetPoWHash = GetPoWHash,
-				LitecoinWorkCalculation = true
+				LitecoinWorkCalculation = true//TODO
 			})
-			.SetBase58Bytes(Base58Type.PUBKEY_ADDRESS, new byte[] { 48 })
-			.SetBase58Bytes(Base58Type.SCRIPT_ADDRESS, new byte[] { 50 })
+			.SetBase58Bytes(Base58Type.PUBKEY_ADDRESS, new byte[] { 50 })
+			.SetBase58Bytes(Base58Type.SCRIPT_ADDRESS, new byte[] { 55 })
 			.SetBase58Bytes(Base58Type.SECRET_KEY, new byte[] { 176 })
 			.SetBase58Bytes(Base58Type.EXT_PUBLIC_KEY, new byte[] { 0x04, 0x88, 0xB2, 0x1E })
 			.SetBase58Bytes(Base58Type.EXT_SECRET_KEY, new byte[] { 0x04, 0x88, 0xAD, 0xE4 })
 			.SetBech32(Bech32Type.WITNESS_PUBKEY_ADDRESS, Encoders.Bech32("mona"))
 			.SetBech32(Bech32Type.WITNESS_SCRIPT_ADDRESS, Encoders.Bech32("mona"))
-			.SetMagic(0xdbb6c0fb)
+			.SetMagic(0xdbb6c0fb)//TODO
 			.SetPort(port)
-			.SetRPCPort(9332)
+			.SetRPCPort(9402)
 			.SetName("mona-main")
 			.AddAlias("mona-mainnet")
 			.AddAlias("monacoin-mainnet")
 			.AddAlias("monacoin-main")
 			.AddDNSSeeds(new[]
 			{
-				new DNSSeedData("loshan.co.uk", "seed-a.monacoin.loshan.co.uk"),
-				new DNSSeedData("thrasher.io", "dnsseed.thrasher.io"),
-				new DNSSeedData("monacointools.com", "dnsseed.monacointools.com"),
-				new DNSSeedData("monacoinpool.org", "dnsseed.monacoinpool.org"),
-				new DNSSeedData("koin-project.com", "dnsseed.koin-project.com"),
+				new DNSSeedData("monacoin.org", "dneseed.monacoin.org"),
 			})
 			.AddSeeds(ToSeed(pnSeed6_main))
-			.SetGenesis(new Block(Encoders.Hex.DecodeData("010000000000000000000000000000000000000000000000000000000000000000000000d9ced4ed1130f7b7faad9be25323ffafa33232a17c3edf6cfd97bee6bafbdd97b9aa8e4ef0ff0f1ecd513f7c0101000000010000000000000000000000000000000000000000000000000000000000000000ffffffff4804ffff001d0104404e592054696d65732030352f4f63742f32303131205374657665204a6f62732c204170706c65e280997320566973696f6e6172792c2044696573206174203536ffffffff0100f2052a010000004341040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9ac00000000")))
+			.SetGenesis(new Block(Encoders.Hex.DecodeData("010000000000000000000000000000000000000000000000000000000000000000000000a64bac07fe31877f31d03252953b3c32398933af7a724119bc4d6fa4a805e435f083c252f0ff0f1e66d612000101000000010000000000000000000000000000000000000000000000000000000000000000ffffffff5f04ffff001d01044c564465632e20333174682032303133204a6170616e2c205468652077696e6e696e67206e756d62657273206f6620746865203230313320596561722d456e64204a756d626f204c6f74746572793a32332d313330393136ffffffff0100f2052a010000004341040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9ac00000000")))
 			.BuildAndRegister();
 
 			builder = new NetworkBuilder();
-			port = 19335;
+			port = 19403;
 			_Testnet = builder.SetConsensus(new Consensus()
 			{
-				SubsidyHalvingInterval = 840000,
-				MajorityEnforceBlockUpgrade = 51,
-				MajorityRejectBlockOutdated = 75,
-				MajorityWindow = 1000,
+				SubsidyHalvingInterval = 1052100,
+				MajorityEnforceBlockUpgrade = 51,//TODO:
+				MajorityRejectBlockOutdated = 75,//TODO
+				MajorityWindow = 1000,//TODO
 				PowLimit = new Target(new uint256("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff")),
-				PowTargetTimespan = TimeSpan.FromSeconds(3.5 * 24 * 60 * 60),
-				PowTargetSpacing = TimeSpan.FromSeconds(2.5 * 60),
+				PowTargetTimespan = TimeSpan.FromSeconds(1.1 * 24 * 60 * 60),
+				PowTargetSpacing = TimeSpan.FromSeconds(1.5 * 60),
 				PowAllowMinDifficultyBlocks = true,
 				PowNoRetargeting = false,
-				RuleChangeActivationThreshold = 1512,
-				MinerConfirmationWindow = 2016,
+				RuleChangeActivationThreshold = 74,
+				MinerConfirmationWindow = 100,
 				CoinbaseMaturity = 100,
-				HashGenesisBlock = new uint256("4966625a4b2851d9fdee139e56211a0d88575f59ed816ff5e6a63deb4e3e29a0"),
+				HashGenesisBlock = new uint256("a2b106ceba3be0c6d097b2a6a6aacf9d638ba8258ae478158f449c321061e0b2"),
 				GetPoWHash = GetPoWHash,
-				LitecoinWorkCalculation = true
+				LitecoinWorkCalculation = true//TODO
 			})
 			.SetBase58Bytes(Base58Type.PUBKEY_ADDRESS, new byte[] { 111 })
-			.SetBase58Bytes(Base58Type.SCRIPT_ADDRESS, new byte[] { 58 })
+			.SetBase58Bytes(Base58Type.SCRIPT_ADDRESS, new byte[] { 196 })
 			.SetBase58Bytes(Base58Type.SECRET_KEY, new byte[] { 239 })
 			.SetBase58Bytes(Base58Type.EXT_PUBLIC_KEY, new byte[] { 0x04, 0x35, 0x87, 0xCF })
 			.SetBase58Bytes(Base58Type.EXT_SECRET_KEY, new byte[] { 0x04, 0x35, 0x83, 0x94 })
 			.SetBech32(Bech32Type.WITNESS_PUBKEY_ADDRESS, Encoders.Bech32("tmona"))
 			.SetBech32(Bech32Type.WITNESS_SCRIPT_ADDRESS, Encoders.Bech32("tmona"))
-			.SetMagic(0xf1c8d2fd)
+			.SetMagic(0xf1c8d2fd)//TODO
 			.SetPort(port)
-			.SetRPCPort(19332)
+			.SetRPCPort(19402)
 			.SetName("mona-test")
 			.AddAlias("mona-testnet")
 			.AddAlias("monacoin-test")
 			.AddAlias("monacoin-testnet")
 			.AddDNSSeeds(new[]
 			{
-				new DNSSeedData("monacointools.com", "testnet-seed.monacointools.com"),
-				new DNSSeedData("loshan.co.uk", "seed-b.monacoin.loshan.co.uk"),
-				new DNSSeedData("thrasher.io", "dnsseed-testnet.thrasher.io"),
+				new DNSSeedData("monacoin.org", "testnet-dnsseed.monacoin.org"),
 			})
 			.AddSeeds(ToSeed(pnSeed6_test))
-			.SetGenesis(new Block(Encoders.Hex.DecodeData("010000000000000000000000000000000000000000000000000000000000000000000000d9ced4ed1130f7b7faad9be25323ffafa33232a17c3edf6cfd97bee6bafbdd97f60ba158f0ff0f1ee17904000101000000010000000000000000000000000000000000000000000000000000000000000000ffffffff4804ffff001d0104404e592054696d65732030352f4f63742f32303131205374657665204a6f62732c204170706c65e280997320566973696f6e6172792c2044696573206174203536ffffffff0100f2052a010000004341040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9ac00000000")))
+			.SetGenesis(new Block(Encoders.Hex.DecodeData("010000000000000000000000000000000000000000000000000000000000000000000000a64bac07fe31877f31d03252953b3c32398933af7a724119bc4d6fa4a805e435ec2dbf58f0ff0f1e6c6420000101000000010000000000000000000000000000000000000000000000000000000000000000ffffffff5f04ffff001d01044c564465632e20333174682032303133204a6170616e2c205468652077696e6e696e67206e756d62657273206f6620746865203230313320596561722d456e64204a756d626f204c6f74746572793a32332d313330393136ffffffff0100f2052a010000004341040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9ac00000000")))
 			.BuildAndRegister();
 
 			builder = new NetworkBuilder();
-			port = 19444;
+			port = 19404;
 			_Regtest = builder.SetConsensus(new Consensus()
 			{
 				SubsidyHalvingInterval = 150,
-				MajorityEnforceBlockUpgrade = 51,
-				MajorityRejectBlockOutdated = 75,
-				MajorityWindow = 144,
+				MajorityEnforceBlockUpgrade = 51,//TODO
+				MajorityRejectBlockOutdated = 75,//TODO
+				MajorityWindow = 144,//TODO
 				PowLimit = new Target(new uint256("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff")),
-				PowTargetTimespan = TimeSpan.FromSeconds(3.5 * 24 * 60 * 60),
-				PowTargetSpacing = TimeSpan.FromSeconds(2.5 * 60),
+				PowTargetTimespan = TimeSpan.FromSeconds(1.1 * 24 * 60 * 60),
+				PowTargetSpacing = TimeSpan.FromSeconds(1.5 * 60),
 				PowAllowMinDifficultyBlocks = true,
-				MinimumChainWork = uint256.Zero,
+				MinimumChainWork = uint256.Zero,//TODO
 				PowNoRetargeting = true,
 				RuleChangeActivationThreshold = 108,
-				MinerConfirmationWindow = 2016,
+				MinerConfirmationWindow = 144,
 				CoinbaseMaturity = 100,
-				HashGenesisBlock = new uint256("f5ae71e26c74beacc88382716aced69cddf3dffff24f384e1808905e0188f68f"),
+				HashGenesisBlock = new uint256("eaa6e60873e6eb045e910fb0f6f62efbf2f137e409abe97ae4bb6ed0eeb9d8c3"),
 				GetPoWHash = GetPoWHash,
 				LitecoinWorkCalculation = true
 			})
 			.SetBase58Bytes(Base58Type.PUBKEY_ADDRESS, new byte[] { 111 })
-			.SetBase58Bytes(Base58Type.SCRIPT_ADDRESS, new byte[] { 58 })
+			.SetBase58Bytes(Base58Type.SCRIPT_ADDRESS, new byte[] { 196 })
 			.SetBase58Bytes(Base58Type.SECRET_KEY, new byte[] { 239 })
 			.SetBase58Bytes(Base58Type.EXT_PUBLIC_KEY, new byte[] { 0x04, 0x35, 0x87, 0xCF })
 			.SetBase58Bytes(Base58Type.EXT_SECRET_KEY, new byte[] { 0x04, 0x35, 0x83, 0x94 })
 			.SetBech32(Bech32Type.WITNESS_PUBKEY_ADDRESS, Encoders.Bech32("tmona"))
 			.SetBech32(Bech32Type.WITNESS_SCRIPT_ADDRESS, Encoders.Bech32("tmona"))
-			.SetMagic(0xdab5bffa)
+			.SetMagic(0xdab5bffa)//TODO
 			.SetPort(port)
-			.SetRPCPort(19332)
+			.SetRPCPort(19402)
 			.SetName("mona-reg")
 			.AddAlias("mona-regtest")
 			.AddAlias("monacoin-reg")
 			.AddAlias("monacoin-regtest")
-			.SetGenesis(new Block(Encoders.Hex.DecodeData("010000000000000000000000000000000000000000000000000000000000000000000000d9ced4ed1130f7b7faad9be25323ffafa33232a17c3edf6cfd97bee6bafbdd97dae5494dffff7f20000000000101000000010000000000000000000000000000000000000000000000000000000000000000ffffffff4804ffff001d0104404e592054696d65732030352f4f63742f32303131205374657665204a6f62732c204170706c65e280997320566973696f6e6172792c2044696573206174203536ffffffff0100f2052a010000004341040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9ac00000000")))
+			.SetGenesis(new Block(Encoders.Hex.DecodeData("010000000000000000000000000000000000000000000000000000000000000000000000d9ced4ed1130f7b7faad9be25323ffafa33232a17c3edf6cfd97bee6bafbdd97dae5494dffff7f20000000000101000000010000000000000000000000000000000000000000000000000000000000000000ffffffff4804ffff001d0104404e592054696d65732030352f4f63742f32303131205374657665204a6f62732c204170706c65e280997320566973696f6e6172792c2044696573206174203536ffffffff0100f2052a010000004341040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9ac00000000")))//TODO
 			.BuildAndRegister();
 
 			var home = Environment.GetEnvironmentVariable("HOME");
@@ -278,7 +272,7 @@ namespace NBitcoin.Monacoin
 		static uint256 GetPoWHash(BlockHeader header)
 		{
 			var headerBytes = header.ToBytes();
-			var h = NBitcoin.Crypto.SCrypt.ComputeDerivedKey(headerBytes, headerBytes, 1024, 1, 1, null, 32);
+			var h = NBitcoin.Crypto.SCrypt.ComputeDerivedKey(headerBytes, headerBytes, 1024, 1, 1, null, 32);//TODO
 			return new uint256(h);
 		}
 
