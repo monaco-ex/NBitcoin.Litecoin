@@ -12,9 +12,9 @@ namespace NBitcoin.Monacoin.Tests
         {
 			Networks.EnsureRegistered();
 			Networks.EnsureRegistered(); // should do nothing
-			BitcoinAddress.Create("LQQGtMCw3KgdpZHLzqysfYbqFpzgnigNjM", Networks.Mainnet);
-			BitcoinAddress.Create("ltc1q7ggs95p9yhh8lf4fy2ek5cv7uusfstsfulvc3u", Networks.Mainnet);
-			BitcoinAddress.Create("tltc1qu5gkdjj5zxakj2kcnyc77djsqqft4pvux4krzxplscurn8mqhlkqt9qzmr", Networks.Testnet);
+			BitcoinAddress.Create("MUqM2tDnZXtJ4h87W2g8fFz9nW3GsYhMfu", Networks.Mainnet);
+			BitcoinAddress.Create("mona1quunc907zfyj7cyxhnp9584rj0wmdka2ec9w3af", Networks.Mainnet);
+			//TODO BitcoinAddress.Create("tltc1qu5gkdjj5zxakj2kcnyc77djsqqft4pvux4krzxplscurn8mqhlkqt9qzmr", Networks.Testnet);
 
 
 			var ex = Assert.Throws<Bech32FormatException>(() => BitcoinAddress.Create("tltc1qu4gkdjj5zxakj2kcnyc77djsqqft4pvux4krzxplscurn8mqhlkqt9qzmr", Networks.Testnet));
