@@ -77,7 +77,7 @@ namespace NBitcoin.Monacoin
 			.SetBase58Bytes(Base58Type.EXT_SECRET_KEY, new byte[] { 0x04, 0x88, 0xAD, 0xE4 })
 			.SetBech32(Bech32Type.WITNESS_PUBKEY_ADDRESS, Encoders.Bech32("mona"))
 			.SetBech32(Bech32Type.WITNESS_SCRIPT_ADDRESS, Encoders.Bech32("mona"))
-			.SetMagic(0xdbb6c0fb)//TODO
+			.SetMagic(0xdbb6c0fb)
 			.SetPort(port)
 			.SetRPCPort(9402)
 			.SetName("mona-main")
@@ -119,7 +119,7 @@ namespace NBitcoin.Monacoin
 			.SetBase58Bytes(Base58Type.EXT_SECRET_KEY, new byte[] { 0x04, 0x35, 0x83, 0x94 })
 			.SetBech32(Bech32Type.WITNESS_PUBKEY_ADDRESS, Encoders.Bech32("tmona"))
 			.SetBech32(Bech32Type.WITNESS_SCRIPT_ADDRESS, Encoders.Bech32("tmona"))
-			.SetMagic(0xf1c8d2fd)//TODO
+			.SetMagic(0xf1c8d2fd)
 			.SetPort(port)
 			.SetRPCPort(19402)
 			.SetName("mona-test")
@@ -162,7 +162,7 @@ namespace NBitcoin.Monacoin
 			.SetBase58Bytes(Base58Type.EXT_SECRET_KEY, new byte[] { 0x04, 0x35, 0x83, 0x94 })
 			.SetBech32(Bech32Type.WITNESS_PUBKEY_ADDRESS, Encoders.Bech32("tmona"))
 			.SetBech32(Bech32Type.WITNESS_SCRIPT_ADDRESS, Encoders.Bech32("tmona"))
-			.SetMagic(0xdab5bffa)//TODO
+			.SetMagic(0xdab5bffa)
 			.SetPort(port)
 			.SetRPCPort(19402)
 			.SetName("mona-reg")
